@@ -1,0 +1,142 @@
+!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  
+  <!--  Meta  -->
+  <meta charset="UTF-8">
+  <title>My New Project!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!--  Styles  -->
+  <link rel="stylesheet" href="styles/index.processed.css">
+</head>
+  
+<body>
+  <h1> Test Clock </h1>
+
+  <p id='author'>By Robert Mendoza</p>
+
+  <p id='description'>The Clock displays todays date, the hour, minute and seconds</p>
+
+  <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+  
+  <button id="alarm">Alarm</button>
+  
+  <!-- Scripts -->
+  <script src="scripts/index.js"></script>
+  
+</body>
+  
+</html>
+
+/*
+ * index.scss
+ * - Add any styles0px want here!
+ */
+
+body {
+  background: rgb(10,56,126);
+  background: linear-gradient(158deg, rgba(10,56,126,0.9560866582961309) 25%, rgba(0,36,23,1) 62%, rgba(14,47,111,0.9616888991924895) 90%);
+}
+h1 {
+    font-family: "Lucida Console";
+    font-size: 60px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #B22222;
+}
+#author {
+    font-size: 40px;
+    color: #FFF8DC;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}
+#description {
+    font-size: 20px;
+    color: #FFF8DC;
+}
+#MyClockDisplay {
+  font-family: 'OCR A Std', monospace;
+  font-size: 70px;
+  -webkit-text-fill-color: #00BFFF;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #B22222;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #008B8B;
+  border-radius: 20px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Blippo', fantasy;
+  padding: 20px;
+  width: 36%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+  background-color: #00FF7F; /* Green */
+  color: white;
+}
+
+function showTime(){
+    var date = new Date();
+    var month = date.getMonth();
+    var day = date.getDay();
+    var year = date.getFullYear();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    month = (month < 10) ? "0" + month: month;
+    day = (day < 10) ? "0" + day: day;
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = month + "/" + day + "/" + year + " " + h + ":" + m + ":" + s + " " + session;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+    
+    setTimeout(showTime, 1000);
+    
+}
+
+showTime();
