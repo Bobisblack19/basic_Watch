@@ -21,7 +21,7 @@
 
   <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
   
-  <button id="alarm">Alarm</button>
+ <button class="button" style="vertical-align:middle"><span>Alarm</span></button>
   
   <!-- Scripts -->
   <script src="scripts/index.js"></script>
